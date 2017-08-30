@@ -1,0 +1,48 @@
+body {
+    margin: 0
+}
+
+.container {
+    font-family: "Verdana", sans-serif;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.nav-menu a:hover {
+    background-color: #cecece;
+}
+
+.bg-light-gray {
+    background-color: #f9f9f9;
+}
+
+.color-dark-gray {
+    color: #333333;
+}
+
+.bg-awesome-blue {
+    background: #2970ce;
+}
+
+.white {
+    color: white;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.border-bottom-blue {
+    border-bottom: 2px solid #1b4a89;
+}
+
+.border-light-gray {
+    border: 1px solid #a5a5a5;
+    outline: none;
+}
+
+input:focus {
+    background-color: #e5e5e5;
+}

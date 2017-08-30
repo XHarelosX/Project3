@@ -1,0 +1,138 @@
+
+<section>
+    <div>
+        <div class="container text-center img-responsive">
+            <h2>{{model.nowPlaying.name}}</h2>
+            <p>{{model.nowPlaying.desc}}</p>
+            <iframe id = "youtubeVideoIframe"class="col-xs-12 img-responsive text-center"  style="display: block; width: 100vw;height: 54vh;left: 0px ;top:0px; position: relative;" ng-src="{{model.nowPlaying.youtubeEmbedUrl}}" frameborder="0"
+                allowfullscreen></iframe>
+            {{model.nowPlaying.youtubeImageUrl}}
+        </div>
+    </div>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="playlistNavbar">
+                <ul class="nav navbar-nav ">
+                    <li><a href="#Watch">Add video</a></li>
+                </ul>
+                <form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search.." ng-model="searchVideo">
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </nav>
+    <ul ng-repeat="video in model.userVideos | filter:searchVideo">
+        <li data-id={{video.id}} class="col-sm-3">
+            <img class="img-responsive" title={{video.name}} ng-click="playVideo(video)" ng-src="{{video.youtubeImageUrl}}" alt="{ video title here }"
+            />
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editModal" ng-click='editThisVideo(video)'>Edit</button>
+            <button type="button" id="45" class="btn btn-default" ng-click="deleteVideo(video)">Delete</button>
+        </li>
+    </ul>
+</section>
+
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addModal">Add video</button>
+
+<!-- Add Video Modal -->
+<div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add video</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h2>Video {{video.id}}</h2>
+                    <form name="addVideoForm" id="addVideoForm" ng-submit="addVideoToPlaylist()">
+                        <div class="form-group">
+                            <label for="youtubeId">Youtube video id:</label>
+                            <input type="text" class="form-control" id="youtubeId" name="youtubeId" placeholder="Enter id of youtube video" ng-model="newVideo.youtubeId" ng-pattern="youtubeIdREGEX" ng-minlength="11" ng-maxlength="11" required autofocus>
+                            <span class="note" ng-show="addVideoForm.youtubeId.$touched && addVideoForm.youtubeId.$invalid">Not youtube ID pattern<br></span>
+                            <span class="note" ng-show="addVideoForm.youtubeId.$touched && addVideoForm.youtubeId.$error.required">Youtube id required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="video-name">Video name:</label>
+                            <input type="text" class="form-control" id="video-name" name="name" placeholder="Enter video name" ng-model="newVideo.name" required>
+                            <span class="note" ng-show="addVideoForm.name.$touched && addVideoForm.name.$invalid">Name is required</span>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="video-category">Music category:</label>
+                            <select ng-model="newVideo.category" name="category" class="form-control" ng-options="x for x in categories" required>
+                            <span class="note" ng-show="addVideoForm.category.$touched && addVideoForm.category.$invalid">Category is required</span>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="video-description">Description:</label>
+                            <textarea class="form-control" id="video-description" placeholder="Enter description" name="desc" maxlength="200" ng-model="newVideo.desc" required></textarea>
+                            <span class="note" ng-show="addVideoForm.desc.$touched && addVideoForm.desc.$invalid">Description is required</span>
+                            
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-disabled="addVideoForm.$invalid">Save</button>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Edit Video Modal -->
+<div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-header" width="100%">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit video</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h2>Video {{video.id}}</h2>
+                    <form name="editVideoForm" id="editVideoForm" ng-submit="updateVideo()">
+                        <div class="form-group">
+                            <label for="url-Input">Youtube ID:</label>
+                            <input type="text" class="form-control" name="youtubeId" id="url-Input" placeholder="Enter url of youtube video" ng-model="model.selectedVideo.youtubeId"required disabled>
+                            <span class="note" ng-show="editVideoForm.youtubeId.$touched && editVideoForm.youtubeId.$invalid">Name is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="video-name">Video name:</label>
+                            <input type="text" class="form-control" id="video-name" name="name" placeholder="Enter video name" ng-model="model.selectedVideo.name" autofocus required>
+                            <span class="note" ng-show="editVideoForm.name.$touched && editVideoForm.name.$invalid">Name is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="video-category">Music category:</label>
+                            <select ng-model="model.selectedVideo.category" name="category" class="form-control"  ng-options="category for category in categories" required>
+                            <span class="note" ng-show="editVideoForm.category.$touched && editVideoForm.category.$invalid">Category is required</span>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="video-description">Description:</label>
+                            <textarea class="form-control" id="video-description" name="desc" placeholder="Enter description" maxlength="200" ng-model="model.selectedVideo.desc" required></textarea>
+                            <span class="note" ng-show="editVideoForm.desc.$touched && editVideoForm.desc.$invalid">Description is required</span>
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-disabled="editVideoForm.$invalid">Save</button>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

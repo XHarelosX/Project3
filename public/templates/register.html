@@ -1,0 +1,48 @@
+<style>
+  input.ng-valid {
+    background-color:#78FA89;
+}
+  Input.ng-invalid.ng-touched {
+    background-color:#FA787E;
+}
+
+.note{
+  font-size: 12px;
+}
+</style>
+
+<div class="container">
+  <h2>Register</h2>
+  <form name="myForm" id="registrationForm" ng-submit="registerInServer()" novalidate>
+    <div class="form-group">
+      <label for="firstNameInput">First name:</label>
+      <input ng-model="user.firstName" type="text" class="form-control" id="firstNameInput" name="firstName" placeholder="Enter first name" ng-minlength="2" ng-required autofocus>
+      <span class="note" ng-show="myForm.firstName.$touched && myForm.firstName.$invalid">The first name is required and must have at least 2 charters.</span>
+    </div>
+      <div class="form-group">
+      <label for="lastNameInput">Last name:</label>
+      <input ng-model="user.lastName" type="text" class="form-control" id="lastNameInput" name="lastName" placeholder="Enter last name" ng-minlength="2" required>
+      <span class="note" ng-show="myForm.lastName.$touched && myForm.lastName.$invalid">The last name is required and must have at least 2 charters.</span>
+    </div>
+      <div class="form-group">
+      <label for="email">Email:</label>
+      <input ng-model="user.email" type="email" class="form-control" id="email" name="userEmail" placeholder="Enter email" required>
+      <span class="note" ng-show="myForm.userEmail.$touched && myForm.userEmail.$invalid">Please type a valid email.</span>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input ng-model="user.password" type="password" class="form-control" id="pwd" name="password" placeholder="Enter password" ng-minlength="8" ng-maxlength="20" required>
+      <span class="note" ng-show="myForm.password.$touched && myForm.password.$invalid">The password has to be between 8 and 20 characters<br></span>
+      <span class="note" ng-show="myForm.password.$error.maxlength">The password is too long.</span>
+      <span class="note" ng-show="myForm.password.$error.minlength">The password is too short.</span>
+    </div>
+      <div class="form-group">
+      <label for="pwdCheck">Password again:</label>
+      <input ng-model="user.confirm" type="password" class="form-control" id="pwdCheck" name="confirm" placeholder="Enter password again" ng-minlength="8" ng-maxlength="20" compare-to="user.password" required>
+      <span class="note" ng-show="myForm.confirm.$error.maxlength">The password is too long.<br></span>
+      <span class="note" ng-show="myForm.confirm.$error.minlength">The password is too short.<br></span>
+      <span class="note" ng-show="myForm.confirm.$error.compareTo">The passwords dont metch.<br></span>
+    </div>
+    <button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">Register</button>
+  </form>
+</div>

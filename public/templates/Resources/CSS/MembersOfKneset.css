@@ -1,0 +1,122 @@
+.clearDark{
+    background:rgb(0,0,0);  
+    background: transparent\9;  
+    background:rgba(0,0,0,0.25);  
+    border: 1px;
+    border-style: solid;
+    border-color:rgba(0,0,0,0.1);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000);  
+    zoom: 1;
+}
+
+h3{
+    margin-top: 40px;
+    margin-bottom: 5px;
+}
+
+
+
+aside{
+    overflow-y: hidden;
+    overflow-x: hidden;
+    flex:2.5;
+}
+
+aside:hover{
+    overflow-y: scroll;  
+}
+
+ul{ 
+    list-style: none;
+    padding-right: 0px;
+    padding-left: 8px;
+}
+
+li{ 
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 5px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    width: 100%;
+    font-size: auto;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+li:hover{
+    box-shadow:1px 1px 3px 1px black;
+    background:rgba(0,195,255,0.4);  
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-right: 5px;
+    padding: 10px;
+    flex: 7.5;
+    box-sizing: border-box;
+}
+
+#headerInSectionDiv{
+    display: flex;
+    height: 115px;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color:rgba(255,255,255,0.1);
+    margin-bottom: 10px;
+}
+
+#photoOfMember{
+    width: 75px;
+    margin-left: 10px;
+
+}
+
+#nameAndLinks{
+        display: flex;
+        flex-direction: column; 
+    width: 100%;
+}
+
+div>h1{
+    margin-bottom: 5px;
+     margin-top: 2px;
+    font-size: 50;
+}
+
+#nameOfMember{
+    flex: 8;
+}
+
+#linksOfMember{
+    flex: 2; 
+}
+
+#detailsDiv{
+    flex: 75;
+    overflow-y: hidden;
+    overflow-y: hidden;
+}
+
+#detailsDiv:hover{
+    overflow-y: auto;
+}
+
+abbr{
+    margin-left: 10px;
+    opacity: 0.8;
+}
+
+abbr:hover{
+    opacity: 1.0;
+}
+
+#photoOfMember>img{
+    height: 110px;
+    width: 75px;
+}
