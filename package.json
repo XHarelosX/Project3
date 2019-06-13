@@ -14,7 +14,7 @@
     "express-session": "^1.15.2",
     "express-validator": "3.1.2",
     "jade": "~1.11.0",
-    "morgan": "~1.7.0",
+    "morgan": "~1.9.1",
     "serve-favicon": "~2.3.2",
     "utile": "^0.3.0",
     "bcryptjs":"2.4.3",
