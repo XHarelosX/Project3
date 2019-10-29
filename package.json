@@ -18,6 +18,6 @@
     "serve-favicon": "~2.3.2",
     "utile": "^0.3.0",
     "bcryptjs":"2.4.3",
-    "mongoose":"4.9.1"
+    "mongoose":"5.7.5"
   }
 }
